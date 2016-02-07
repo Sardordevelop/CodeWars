@@ -1,5 +1,10 @@
 import pdb
 
+#tested:
+#2 * 4 * ( 5 + 2 / ( 10 * 2 ) )
+#( 44 + 4 ) * 25 / 5
+
+
 class Stack:
      def __init__(self):
          self.items = []
@@ -106,7 +111,7 @@ def toPolishNotation(infixNotation_):
                 if (not stack.isEmpty()) and (stack.peek() in "+-*/") :
                     polish_string += ' ' + stack.pop()
 
-        print(polish_string)
+      #  print(polish_string)
 
 
     if not stack.isEmpty():
@@ -116,4 +121,23 @@ def toPolishNotation(infixNotation_):
     return polish_string
 
 
-print(toPolishNotation("( 3 + 5 ) * 5 * ( 4 + 7 ) * ( 9 + 7 ) / 11"))
+
+def calculate(sRPN_):
+    sRPN = sRPN_.split()
+    stack = Stack()
+    for x in sRPN:
+        if x.isdigit():
+            #print("operand")
+            stack.push(x)
+            #print(stack.peek())
+        else:
+            #print("operator")
+            b = float(stack.pop())
+            a = float(stack.pop())
+            stack.push(operators[x]['calc'](a, b))
+            #print(stack.peek())
+    return stack.pop()
+
+
+
+print(calculate(toPolishNotation("2 * 4 * ( 5 + 2 / ( 10 * 2 ) ) ")))
