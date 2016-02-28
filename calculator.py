@@ -153,4 +153,4 @@ class Calculator(object):
         return round(float(self.calculate(rpn)),3)
 
 
-print(Calculator().evaluate("1.1 * 2.2 * 3.3"))
+print Calculator().calculate("3*3/(7+1)")
