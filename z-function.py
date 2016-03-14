@@ -1,7 +1,19 @@
+import random
+import string
+import time
+import numpy
+
+def zfunc2(s):
+    z=[len(s)]
+    for i,c in enumerate(s):
+        x,j=0,0
+        while j<len(s) and s[0:j]==s[i:j]:
+            j+=1
+        z.append(j)
+    return z
+
 def zfunc(str_):
 	z = []
-	if len(str_) == 0:
-		return z
 	z.append(len(str_))
 	l,r = 0,1
 	for i in xrange(1,len(str_)):
@@ -21,4 +33,10 @@ def zfunc(str_):
 					z[i],l,r = r - i + off, i, r + off - 1
 	return z
 
-print zfunc('')
+x = "a"*100000
+N = 100
+long_random_str = ''.join(random.choice(string.lowercase) for x in range(N))
+#start_time = time.time()
+print (zfunc('abracadabra'))
+#print(time.time() - start_time)
+

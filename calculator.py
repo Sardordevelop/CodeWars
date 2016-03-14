@@ -92,11 +92,11 @@ class Calculator(object):
                 polish_string += ' ' + x
                 #print(polish_string + " --")
 
-            if x in "+-*/":
+            if x in "+-*/^":
 
                 if not stack.isEmpty():
                     #print("here")
-                    while (not stack.isEmpty()) and (stack.peek() in "+-*/")  and self.operators[x]['prec'] <= self.operators[stack.peek()]['prec']:
+                    while (not stack.isEmpty()) and (stack.peek() in "+-*/^")  and self.operators[x]['prec'] <= self.operators[stack.peek()]['prec']:
                         polish_string += ' ' +  stack.pop()
                     stack.push(x)            
                     #print(polish_string)
@@ -118,8 +118,8 @@ class Calculator(object):
                         polish_string += ' ' + stack.pop()
                     stack.pop()
 
-                    if (not stack.isEmpty()) and (stack.peek() in "+-*/") :
-                        polish_string += ' ' + stack.pop()
+                    #if (not stack.isEmpty()) and (stack.peek() in "+-*/^") :
+                       # polish_string += ' ' + stack.pop()
 
 
         if not stack.isEmpty():
@@ -153,4 +153,10 @@ class Calculator(object):
         return round(float(self.calculate(rpn)),3)
 
 
-print Calculator().calculate("3*3/(7+1)")
+
+def to_postfix (infix):
+    new_infix = ' '.join(list(infix))
+    polish = Calculator().toPolishNotation(new_infix)
+    return polish
+
+print to_postfix("5+(6-2)*9+3^(7-1)")
