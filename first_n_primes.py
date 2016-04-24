@@ -18,9 +18,8 @@ class Primes(object):
 					yield i
 					multiples.update(range(i*i,n+1,i))
 		return list(eratosphene(number))[:number]
-			
 
 
-
-
-print(Primes.first(7059)[-9:-4])
+input_ =  ' '.join(iter(raw_input, '')).split(' ')
+input_ = map(int, input_)
+print "\n".join(map(str,[Primes.first(x)[-1] for x in input_[1:]]))
